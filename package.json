@@ -8,22 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d-d-wolfe/auth-server.git"
+    "url": "git+https://github.com/wolfes-401-advanced-javascript/auth-server.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/d-d-wolfe/auth-server/issues"
+    "url": "https://github.com/wolfes-401-advanced-javascript/auth-server/issues"
   },
-  "homepage": "https://github.com/d-d-wolfe/auth-server#readme",
+  "homepage": "https://github.com/wolfes-401-advanced-javascript/auth-server#readme",
   "dependencies": {
     "base-64": "^0.1.0",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jest": "^26.0.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.20"
   }
 }
