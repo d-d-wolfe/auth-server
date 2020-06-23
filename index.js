@@ -1,13 +1,18 @@
 'use strict';
 
 require('dotenv').config();
-const express = require('express');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
-const base64 = require('base-64');
-const jwt = require('jsonwebtoken');
+const server = require('./src/server.js');
+const PORT = process.env.PORT;
+const mongoose = require('mongoose');
 
-const app = express();
+mongoose.connect(process.env.MONGODB_ATLAS_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.use(express.json());
+const db = mongoose.connection;
+db.on('open', () => {
+  console.log('Connected to Mongo');
+});
 
+server.start(PORT);
