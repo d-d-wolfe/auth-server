@@ -8,7 +8,7 @@ const User = new UserModel();
 
 router.post('/signup', signUp);
 router.post('/signin', auth, signIn);
-router.get('users', getUsers);
+router.get('/users', getUsers);
 
 async function signUp(req, res) {
   let userExists = await User.exists({ username: req.body.username });

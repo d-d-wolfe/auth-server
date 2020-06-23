@@ -3,7 +3,7 @@
 const schema = require('./users-schema.js');
 const Model = require('./mongo-interface.js');
 const bcrypt = require('bcrypt');
-const jst = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 let SECRET = 'secretvalidationstring';
 
