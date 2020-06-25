@@ -24,7 +24,7 @@ async function signUp(req, res) {
     console.log(token);
     res.cookie('token', token);
     res.header('token', token);
-    res.send('user was signed up');
+    res.send('user was signed up' + token);
   } else {
     res.status(403).send('user invalid');
   }
