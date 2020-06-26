@@ -4,6 +4,7 @@ const schema = require('./users-schema.js');
 const Model = require('./mongo-interface.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const roles = require('./roles.js');
 
 let SECRET = process.env.SECRET;
 //let EXPIRES = process.env.TOKEN_EXPIRATION;
