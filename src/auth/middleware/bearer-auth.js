@@ -1,7 +1,7 @@
 'use strict';
 
 const UserModel = require('../models/user-models.js');
-const usersSchema = require('../models/users-schema.js');
+
 
 async function bearer(req, res, next) {
   if (!req.headers.authorization) {
@@ -9,7 +9,7 @@ async function bearer(req, res, next) {
   }
 
   let [authType, token] = req.headers.authorization.split(' ');
-  let validUser = await usersSchema.validateToken(token);
+  let validUser = await UserModel.validateToken(token);
 
   if  (validUser) {
     req.user = validUser;
@@ -19,6 +19,5 @@ async function bearer(req, res, next) {
   }
 }
 
-module.exports = {
-  bearer,
-};
+module.exports = bearer;
+
