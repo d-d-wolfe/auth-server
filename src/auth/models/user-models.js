@@ -5,7 +5,8 @@ const Model = require('./mongo-interface.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-let SECRET = 'secretvalidationstring';
+let SECRET = process.env.SECRET;
+//let EXPIRES = process.env.TOKEN_EXPIRATION;
 
 class User extends Model {
   constructor() {
@@ -17,7 +18,7 @@ class User extends Model {
   }
 
   static async authenticateUser(username, password) {
-    try {
+    try {  
       let users = await schema.find({ username });
       let authorized = await bcrypt.compare(password, users[0].password);
       if (authorized) {
@@ -34,6 +35,15 @@ class User extends Model {
   static generateToken(username) {
     let token = jwt.sign(username, SECRET);
     return token;
+  }
+
+  static async validateToken(token) {
+    try {
+      let user = await jwt.verify(token, SECRET);
+      return user;
+    } catch (error) {
+      return false;
+    }
   }
 }
 
