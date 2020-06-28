@@ -12,6 +12,7 @@ let SECRET = process.env.SECRET;
 class User extends Model {
   constructor() {
     super(schema);
+    this.role = roles.user;
   }
 
   static hashPassword(password) {
@@ -19,7 +20,7 @@ class User extends Model {
   }
 
   static async authenticateUser(username, password) {
-    try {  
+    try {
       let users = await schema.find({ username });
       let authorized = await bcrypt.compare(password, users[0].password);
       if (authorized) {
@@ -45,6 +46,15 @@ class User extends Model {
     } catch (error) {
       return false;
     }
+  }
+  // this function validates the permissions by checking the permission provided against the permissions assigned to the user via their role. The user is fetched using their auth token.
+  static async validatePermission(token, perm) {
+    let user = this.validateToken(token);
+    let hasPermission = false;
+    user.role.forEach(rolePerm => {
+      hasPermission |= rolePerm === perm;
+    });
+    return hasPermission;
   }
 }
 
