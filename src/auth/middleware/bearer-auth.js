@@ -9,8 +9,9 @@ async function bearer(req, res, next) {
   }
 
   let [authType, token] = req.headers.authorization.split(' ');
+  console.log(token);
   let validUser = await UserModel.validateToken(token);
-
+  console.log('valid user', validUser);
   if  (validUser) {
     req.user = validUser;
     next();
