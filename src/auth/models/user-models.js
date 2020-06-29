@@ -33,7 +33,7 @@ class User extends Model {
       return false;
     }
   }
-
+  // only saves the username right now, need to map role to capabilities using roles.js.
   static generateToken(username) {
     let token = jwt.sign(username, SECRET);
     return token;
